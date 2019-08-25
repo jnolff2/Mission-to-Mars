@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Mission to Mars</title>
+        <!-- Bootstrap Components -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <!-- Place the title of the website at the top center of the page and add a button to activate the 
+        scrape function from the app.py file which scrapes for the latest information when it is clicked -->
+        <div class="container-fluid">
+            <div class="jumbotron text-center">
+                <h1><strong>Mission to Mars</strong></h1>
+                <a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a>
+            </div>
+        </div>
+
+        <!-- Organize the article contents and the tweet to be in the same row of the grid -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Latest Mars News</h2>
+                    <h5>{{ mars.news_title }}</h5>
+                    <p>{{ mars.news_p }}</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="row weather-box">
+                        <div class="col-md-12">
+                            <h2>Current Weather on Mars</h2>
+                            <p>{{ mars.mars_weather }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <br>
+        <!-- Place the Mars facts table next to the Featured Mars Image -->
+        <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6 big_box">
+                <h2>Featured Mars Image</h2>
+                <img src="{{ mars.featured_image_url }}" alt="Featured Mars Image" height="400" width="600">
+              </div>
+              <div class="col-md-6">
+                <div class="row justify-content-end">  
+                    <div class="col-md-12">
+                        <h2>Mars Facts</h2>
+                        <p>{{ mars.mars_table | safe }}</p>
+                    </div>
+                </div>
+            </div>   
+        </div>
+    <br>
+        <div class="text-center">
+                <h2>Mars Hemispheres</h2>
+            <!-- Arrange the four hemisphere picks into a grid that is 2 x 2 -->
+            <div class="row">
+                <div class="row align-cols-center">
+                    <div class="col md-6">
+                        <img src="{{ mars.hemisphere_image_urls[0]['img_url'] }}" alt= "Mars Hemisphere 1" height="500" width="500">
+                        <h3>{{ mars.hemisphere_image_urls[0]['title'] }}</h3>
+                    </div>
+                    <div class="col md-6">
+                        <img src="{{ mars.hemisphere_image_urls[1]['img_url'] }}" alt= "Mars Hemisphere 2" height="500" width="500">
+                        <h3>{{ mars.hemisphere_image_urls[1]['title'] }}</h3>
+                    </div>
+                    <!-- Force next columns to break to new line at md breakpoint and up -->
+                    <div class="w-100 d-none d-md-block"></div>
+
+                    <div class="col md-6">
+                        <img src="{{ mars.hemisphere_image_urls[2]['img_url'] }}" alt= "Mars Hemisphere 3" height="500" width="500">
+                        <h3>{{ mars.hemisphere_image_urls[2]['title'] }}</h3>
+                    </div>
+                    <div class="col md-6">
+                        <img src="{{ mars.hemisphere_image_urls[3]['img_url'] }}" alt= "Mars Hemisphere 4" height="500" width="500">
+                        <h3>{{ mars.hemisphere_image_urls[3]['title'] }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
